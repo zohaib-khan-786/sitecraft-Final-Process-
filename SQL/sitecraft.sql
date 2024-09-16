@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2024 at 06:22 AM
+-- Generation Time: Sep 16, 2024 at 12:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -24,17 +24,67 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `profile_picture` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `email`, `password`, `profile_picture`, `created_at`, `deleted_at`) VALUES
+(1, 'Admin5', 'admin5@gmail.com', '$2y$10$TAjsfwjJBxaSkVR9lX8g7.kmml.Bepf1xRK0SfqAONwfLgKw0s1Jm', 'profile-2.jpg', '2024-08-20 15:20:48', NULL),
+(2, 'Admin1', 'admin@gmail.com', '$2y$10$nJOuOnyMB4uN7cpXwG53..rLmCZoPMxiYe8MPGBW2u8LNobE2GGAC', 'profile-1.jpg', '2024-08-20 16:04:52', NULL),
+(3, 'JohnSmith231', 'Killerzobi@gmail.com', '$2y$10$U.x/OvMsB8SsPtPqv18SlexAE3Atr1onPukm.fNgUuQV4B/L7dhsG', 'WEB_WIZARDS_LOGO-removebg-preview.png', '2024-09-15 14:26:07', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL,
+  `session_id` varchar(255) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `store_id` int(255) NOT NULL,
+  `template_name` varchar(255) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_price` decimal(10,2) NOT NULL,
+  `product_image` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `cost` float NOT NULL,
+  `added_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `price` int(11) NOT NULL,
   `cost` float NOT NULL,
   `quantity` int(11) NOT NULL,
+  `total_amount` float NOT NULL,
+  `user_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `placed_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `payment_method` varchar(255) NOT NULL,
+  `payment_status` varchar(255) NOT NULL,
+  `order_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -42,10 +92,29 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`name`, `image`, `price`, `cost`, `quantity`, `store_id`, `placed_at`, `status`) VALUES
-('watch', 'http://localhost/Aptech_Vision/Product_images/product_img_66c792b28b8d4.jpg', 20, 0, 0, 42, '2024-08-23 16:41:05', 0),
-('Logo', 'http://localhost/Aptech_Vision/Product_images/product_img_66c8f30edca4e.png', 3, 1.99, 1, 42, '2024-08-24 01:00:00', 0),
-('Dribble', 'http://localhost/Aptech_Vision/Product_images/product_img_66c93ec17f937.png', 3, 0, 1, 44, '2024-08-24 02:20:45', 0);
+INSERT INTO `orders` (`id`, `name`, `image`, `price`, `cost`, `quantity`, `total_amount`, `user_id`, `store_id`, `payment_method`, `payment_status`, `order_date`, `status`) VALUES
+(32, 'test', 'http://localhost/Aptech_Vision/Product_images/product_img_66e7528f7f66a.png', 13, 2.99, 3, 38.97, 11, 51, 'cod', 'Pending', '2024-09-15 21:34:15', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`, `price`) VALUES
+(31, 32, 85, 3, 12.99);
 
 -- --------------------------------------------------------
 
@@ -123,7 +192,9 @@ INSERT INTO `products` (`id`, `name`, `description`, `category`, `quantity`, `pr
 (53, 'Fitness Tracker Smartwatch', 'Smartwatch with fitness tracking and health monitoring features.', '', 0, 129.99, 0, 'https://fakeimg.pl/500x500/cc9966', 0, 0, '2024-07-25 18:00:48'),
 (54, 'Bluetooth Car Speakerphone', 'Hands-free car speakerphone for safer driving.', '', 0, 39.99, 0, 'https://fakeimg.pl/500x500/336699', 0, 0, '2024-07-25 18:00:48'),
 (75, 'Logo', 'asdasd', 'men', 5, 2.99, 1.99, 'http://localhost/Aptech_Vision/Product_images/product_img_66c8f30edca4e.png', 42, 1, '2024-08-23 20:37:34'),
-(76, 'test', 'asd', 'men', 5, 2.99, 1, 'http://localhost/Aptech_Vision/Product_images/product_img_66c8f9cb8cc1c.png', 43, 3, '2024-08-23 20:58:26');
+(76, 'test', 'asd', 'men', 5, 2.99, 1, 'http://localhost/Aptech_Vision/Product_images/product_img_66c8f9cb8cc1c.png', 43, 3, '2024-08-23 20:58:26'),
+(83, 'test', 'dddd', 'men', 5, 200, 10, 'http://localhost/Aptech_Vision/Product_images/product_img_66e73af2b9aa2.png', 49, 10, '2024-09-15 19:52:18'),
+(85, 'test', '123456', 'men', 5, 12.99, 2.99, 'http://localhost/Aptech_Vision/Product_images/product_img_66e7528f7f66a.png', 51, 11, '2024-09-15 21:33:03');
 
 -- --------------------------------------------------------
 
@@ -150,8 +221,22 @@ CREATE TABLE `store` (
 --
 
 INSERT INTO `store` (`id`, `name`, `category`, `logo`, `preview_image`, `template`, `theme`, `path`, `published`, `domain`, `created_by`) VALUES
-(42, 'Daraz', 'E-commerce Clothing Store', 'http://localhost/Aptech_vision/User_Uploads/eef78e79bc931727c95a8e8fddd0c1d0.png', 'http://localhost/Aptech_Vision/Uploads/template-2.png', 'Daraz_giftos', '3', 'http://localhost/Aptech_vision/User_Stores/Daraz_giftos', 0, NULL, 1),
-(43, 'Zohain_Shopping_Center', 'E-commerce Clothing Store', 'http://localhost/Aptech_vision/User_Uploads/5ac3677c4d1834c0750f6f4b787c9714.png', 'http://localhost/Aptech_Vision/Uploads/template-2.png', 'Zohain_Shopping_Center_giftos', '8', 'http://localhost/Aptech_vision/User_Stores/Zohain Shopping Center_giftos', 0, NULL, 3);
+(51, 'Daraz', 'E-commerce Clothing Store', 'http://localhost/Aptech_vision/User_Uploads/180304fb25167189e3caf12863296f19.jpg', 'http://localhost/Aptech_Vision/Uploads/template-2.png', 'Daraz_giftos', '8', 'http://localhost/Aptech_vision/User_Stores/Daraz_giftos', 0, NULL, 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_users`
+--
+
+CREATE TABLE `t_users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -165,22 +250,50 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT 'https://img.icons8.com/officel/30/person-male-skin-type-1-2.png',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `code` int(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Status_Update` enum('active','inactive') DEFAULT 'inactive',
+  `deleted_at` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `image`, `created_at`) VALUES
-(1, 'Zohaibkhalid_0', 'Killerzobi@gmail.com', '$2y$10$wWzf9x6BTKiIJWbrHMamauMaQsyMg5wvuzIVmSfFQzVmhVIC5JsU6', '../Uploads/Dribbble.jpeg', '2024-07-01 15:28:01'),
-(2, 'zohaib', 'Zohaib@Ismail.com', '$2y$10$T8ccwlW8MVbX62fmu.S8QOZ5PkY0jrvQYqqZKnML6XBsBGxnZCrfa', 'https://img.icons8.com/officel/30/person-male-skin-type-1-2.png', '2024-07-14 11:44:10'),
-(3, 'Zohaib Mughal', 'killerzobi893@gmail.com', '$2y$10$sW74AeYLO1X9WmM/528K5.Znb5oS0yfKaskgNYxMXeB1LdDhArTc6', 'https://lh3.googleusercontent.com/a/ACg8ocJAI7S3JqTvVhvegFbLg4OAZMP1h8DHa7m7h-1E9J1UpPHBt1Dj=s96-c', '2024-07-14 19:11:39'),
-(4, 'Zohaib Khan', 'lordgrimok@gmail.com', '', 'https://lh3.googleusercontent.com/a/ACg8ocJy4OpCJ7hwkqTIw9PPtUScm7Sm5DRSjva4LRK5ksOntDEnNVA=s96-c', '2024-07-14 19:58:43');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `image`, `code`, `status`, `created_at`, `Status_Update`, `deleted_at`) VALUES
+(11, 'Zohaib Mughal', 'Killerzobi893@gmail.com', '$2y$10$JtQZU2zmSZ.K18yJZn8GtOrewiSJfL1bmEj2mpOcXcphjV/RMt0lK', 'https://img.icons8.com/officel/30/person-male-skin-type-1-2.png', 0, '', '2024-09-15 21:31:17', 'active', 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Indexes for table `products`
@@ -196,6 +309,15 @@ ALTER TABLE `store`
   ADD KEY `created_by` (`created_by`);
 
 --
+-- Indexes for table `t_users`
+--
+ALTER TABLE `t_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `fk_store_id` (`store_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -206,32 +328,80 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT for table `t_users`
+--
+ALTER TABLE `t_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+--
+-- Constraints for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+
+--
 -- Constraints for table `store`
 --
 ALTER TABLE `store`
   ADD CONSTRAINT `store_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `t_users`
+--
+ALTER TABLE `t_users`
+  ADD CONSTRAINT `fk_store_id` FOREIGN KEY (`store_id`) REFERENCES `store` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
