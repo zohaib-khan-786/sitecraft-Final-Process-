@@ -114,7 +114,7 @@ unset($_SESSION['can_access_create_page']);
                         <div id="templateSection" class="d-none">
                             <h3 class="mb-4 fw-bold">Pick the Website Template You Love</h3>
                             <div class="row">
-                                <div class="col-md-4 mb-3">
+<!--                                 <div class="col-md-4 mb-3">
                                     <div class="card shadow-sm position-relative" id="template1" >
                                         <input type="radio" class="input-radio" name="template_checked" value="freshshop" id="radio1">
                                         <div class="custom-radio"></div>
@@ -124,7 +124,7 @@ unset($_SESSION['can_access_create_page']);
                                         </div>
                                          <input type="hidden" class="preview-image-url"  value="">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-4 mb-3">
                                     <div class="card shadow-sm position-relative" id="template2" >
                                         <input type="radio" class="input-radio" name="template_checked" value="giftos" id="radio2">
