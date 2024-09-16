@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Overview</title>
+    <link rel="stylesheet" href="assets/css/styles.css"> <!-- Link to your CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-jvectormap/2.0.6/jquery-jvectormap.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jvectormap/2.0.6/jquery-jvectormap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jvectormap/2.0.6/jquery-jvectormap-world-mill-en.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header and Sidebar here -->
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="container-fluid">
+                <h1 class="page-title">Dashboard Overview</h1>
+                
+                <div class="row">
+                    <!-- Total Sales Card -->
+                    <div class="col-md-3">
+                        <div class="card card-statistics">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Sales</h5>
+                                <h3>$50,000</h3>
+                                <div class="progress my-2" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- New Customers Card -->
+                    <div class="col-md-3">
+                        <div class="card card-statistics">
+                            <div class="card-body">
+                                <h5 class="card-title">New Customers</h5>
+                                <h3>200</h3>
+                                <div class="progress my-2" style="height: 5px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Orders Card -->
+                    <div class="col-md-3">
+                        <div class="card card-statistics">
+                            <div class="card-body">
+                                <h5 class="card-title">Orders</h5>
+                                <h3>350</h3>
+                                <div class="progress my-2" style="height: 5px;">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Products Sold Card -->
+                    <div class="col-md-3">
+                        <div class="card card-statistics">
+                            <div class="card-body">
+                                <h5 class="card-title">Products Sold</h5>
+                                <h3>1,000</h3>
+                                <div class="progress my-2" style="height: 5px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="vectormap-wrapper">
+                            <div id="world" class="vmap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            $('#world').vectorMap({
+                map: 'world_mill_en',
+                backgroundColor: '#fff',
+                zoomOnScroll: false,
+                regionStyle: {
+                    initial: {
+                        fill: '#e4e4e4',
+                        stroke: 'none'
+                    },
+                    hover: {
+                        fill: '#8E54E9'
+                    }
+                },
+                series: {
+                    regions: [{
+                        values: {
+                            "US": 10000,
+                            "CN": 5000,
+                            "IN": 3000,
+                            "BR": 2000,
+                            "AU": 1500,
+                            "GB": 1200,
+                            "FR": 1000,
+                            "DE": 800
+                        },
+                        scale: ['#d7d7d7', '#8E54E9'],
+                        normalizeFunction: 'polynomial'
+                    }]
+                }
+            });
+        });
+    </script>
+</body>
+</html>
