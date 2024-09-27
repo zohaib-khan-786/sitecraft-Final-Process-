@@ -1,0 +1,17 @@
+
+
+# Ignore Composer vendor directory and lock file
+/vendor
+/composer.lock
+
+# Ignore specific folders
+/Test Stripe
+
+# Ignore node_modules directory
+/node_modules
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp

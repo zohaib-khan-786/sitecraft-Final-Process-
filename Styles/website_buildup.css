@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.store-header img {
+    max-width: 100px;
+    height: auto;
+}
+
+.banner {
+    background-image: url('https://cdn.pixabay.com/photo/2015/11/10/08/31/banner-1036483_1280.jpg');
+    background-size: cover;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.banner input {
+    max-width: 400px;
+    margin-top: 1rem;
+}

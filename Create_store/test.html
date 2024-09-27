@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="../Styles/styles.css">
+    <style>
+        a{
+            text-decoration: none;
+        }
+        .button{
+            border: 1.5px solid white;
+        }
+        .sidebar {
+            height: 100vh;
+            background-color: #f8f9fa;
+            padding: 1rem;
+        }
+        .content {
+            padding: 2rem;
+        }
+        .accordion-collapse{
+            background-color: #e6e6e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <span data-feather="home"></span>
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file"></span>
+                                Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="shopping-cart"></span>
+                                Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="users"></span>
+                                Customers
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="bar-chart-2"></span>
+                                Analytics
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="layers"></span>
+                                Marketing
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="layers"></span>
+                                Discounts
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Sales channels</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text"></span>
+                                Online Store
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text"></span>
+                                Point of Sale
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Apps</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text"></span>
+                                Add apps
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Get ready to sell</h1>
+                </div>
+
+                <div class="content">
+                    <p>Here's a guide to get started. As your business grows, you'll get fresh tips and insights here.</p>
+                    <div class="accordion" id="setupGuide">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseFour">
+                                    Name your store
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#setupGuide">
+                                <div class="accordion-body">
+                                    <p>Your temporary store name is currently My Store. The store name appears in your admin and your online store.</p>
+                                    <button class="button btn btn-success rounded-pill shadow px-5 py-2" data-bs-toggle="modal" data-bs-target="#staticBackdropModal"><a href="#" class="text-light">Name Store</a></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- NAME MODAL -->
+
+                        <div class="modal fade" id="staticBackdropModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-custom">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row px-0 px-lg-4 ">
+                                            
+                                            <div class="store-name-sec col-12 col-lg-7 p-4 mt-4">
+                                                <h4 class="mb-4 fw-bold">Start setting up your store</h4>
+                                                <span>Give your store a name. You can create a new one or use a name you already have.</span>
+                                                <div class="input-field mt-5">
+                                                    <input class="form-control" type="text" name="store_name" id="store_name" placeholder="Store Name" >
+                                                </div>
+                                                <div class="modal-sm-sec row my-auto d-flex align-items-end justify-content-center d-block d-lg-none ">
+                                                    <img src="https://static.wixstatic.com/media/a21a57_5652d0a1c7274ca995001e3a83f872c8~mv2.png" alt="website branding">   
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="modal-continue-sec col-5 d-none d-lg-flex flex-column mt-auto align-items-start ">
+                                                <img src="https://static.wixstatic.com/media/a21a57_5652d0a1c7274ca995001e3a83f872c8~mv2.png" alt="website branding">
+                                            </div>
+                                        </div>
+                                        <div class="row px-4">
+                                            <div class="col-12 d-flex align-items-center justify-content-center justify-content-lg-end mt-3"><button class="modal-button btn btn-primary rounded-pill px-3 d-flex align-items-center justify-content-center  gap-3" id="btnContinue">Continue <i class="bi bi-arrow-right mt-1"></i></button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NAME MODAL END -->
+                       
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Customize your online store
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#setupGuide">
+                                <div class="accordion-body">
+                                    <p>Choose a theme and add your logo, colors, and images to reflect your brand.</p>
+                                    <button class="button btn btn-success rounded-pill shadow px-5 py-2"><a href="#" class="text-light">Customize</a></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Add your first product
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#setupGuide">
+                                <div class="accordion-body">
+                                    <p>Details on how to add your first product.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    Set your shipping rates
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#setupGuide">
+                                <div class="accordion-body">
+                                    <p>Details on how to set your shipping rates.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSix">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                    Set up a payment provider
+                                </button>
+                            </h2>
+                            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#setupGuide">
+                                <div class="accordion-body">
+                                    <p>Details on how to set up a payment provider.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+</body>
+</html>
+
+
+<!-- <?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $selected_template = $_POST['template'];
+    
+    echo "Template chosen: " . $selected_template;
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (isset($_FILES['logo']) && $_FILES['logo']['error'] == 0) {
+        $logo_name = basename($_FILES['logo']['name']);
+        $logo_path = "uploads/" . $logo_name;
+        move_uploaded_file($_FILES['logo']['tmp_name'], $logo_path);
+        echo "Logo uploaded: " . $logo_name . "<br>";
+    }
+
+
+    if (isset($_FILES['banner']) && $_FILES['banner']['error'] == 0) {
+        $banner_name = basename($_FILES['banner']['name']);
+        $banner_path = "uploads/" . $banner_name;
+        move_uploaded_file($_FILES['banner']['tmp_name'], $banner_path);
+        echo "Banner uploaded: " . $banner_name . "<br>";
+    }
+
+  
+    $slogan = $_POST['slogan'];
+    $custom_text = $_POST['text'];
+    $products = $_POST['products'];
+    $payment_method = $_POST['payment_method'];
+
+
+    echo "Slogan: " . $slogan . "<br>";
+    echo "Custom Text: " . $custom_text . "<br>";
+    echo "Products: " . $products . "<br>";
+    echo "Payment Method: " . $payment_method . "<br>";
+}
+?> -->
