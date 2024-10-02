@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     const firstRadioButton = document.querySelector('.card input[type="radio"]');
+    firstRadioButton.click();
     if (firstRadioButton) {
         firstRadioButton.checked = true;
         document.querySelector('.btn-next').disabled = false;
