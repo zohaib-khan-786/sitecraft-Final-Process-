@@ -48,7 +48,7 @@ if (isset($_GET['store_id']) && !empty($_POST)) {
             $product_image_name = uniqid('product_img_') . '.' . $file_extension;
             $upload_directory = '../Product_images/'; 
             $product_image_path = $upload_directory . $product_image_name;
-            $product_image_url = "http://localhost/Aptech_Vision/Product_images/" . $product_image_name;
+            $product_image_url = "http://localhost:82/Aptech_Vision/Product_images/" . $product_image_name;
 
             if (!move_uploaded_file($file_tmp, $product_image_path)) {
                 echo "Failed to move uploaded file.";
@@ -100,7 +100,7 @@ if (isset($_GET['store_id']) && !empty($_POST)) {
             $product_image_name = uniqid('product_img_') . '.' . $file_extension;
             $upload_directory = '../Product_images/'; 
             $product_image_path = $upload_directory . $product_image_name;
-            $product_image_url = "http://localhost/Aptech_Vision/Product_images/" . $product_image_name;
+            $product_image_url = "http://localhost:82/Aptech_Vision/Product_images/" . $product_image_name;
 
             if (!move_uploaded_file($file_tmp, $product_image_path)) {
                 echo "Failed to move uploaded file.";
