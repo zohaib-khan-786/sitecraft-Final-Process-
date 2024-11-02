@@ -87,9 +87,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $dest_path = $uploadFileDir . $newFileName;
 
             if (move_uploaded_file($fileTmpPath, $dest_path)) {
-                $baseURL = "http://localhost/Aptech_vision/User_Uploads/";
+                $baseURL = "http://localhost:82/Aptech_vision/User_Uploads/";
                 $logoURL = $baseURL . $newFileName;
-                $store_baseURL = "http://localhost/Aptech_vision/User_Stores/";
+                $store_baseURL = "http://localhost:82/Aptech_vision/User_Stores/";
                 $store_path = $store_baseURL . $newTemplateName;
 
                 $stmt = $conn->prepare("INSERT INTO store (name, category, logo, preview_image, template, path, created_by) VALUES (?, ?, ?, ?, ?, ?, ?)");
