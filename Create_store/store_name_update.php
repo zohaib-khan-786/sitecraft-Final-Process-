@@ -45,7 +45,7 @@ if (isset($_GET['id'])) {
                                     // Update the store path in the database
                                     $update_path_sql = "UPDATE store SET template = ?, path = ? WHERE id = ?";
                                     if ($update_path_stmt = $conn->prepare($update_path_sql)) {
-                                        $newPath = "http://localhost/Aptech_vision/User_Stores/{$newTemplateName}";
+                                        $newPath = "http://localhost:82/Aptech_vision/User_Stores/{$newTemplateName}";
                                         $update_path_stmt->bind_param("ssi", $newTemplateName, $newPath, $store_id);
                                         $update_path_stmt->execute();
                                         $update_path_stmt->close();
