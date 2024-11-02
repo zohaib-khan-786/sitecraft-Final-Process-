@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if user is logged in
     if (!isset($_SESSION['user_loggedin'])  || $_SESSION['user_loggedin'] != true) {
         header('location: login.php');
+        exit();
     }
 
     $paymentMethod = 'cod';   
